@@ -5,9 +5,6 @@ from sklearn.metrics import confusion_matrix, classification_report
 
 from Dataset.dataset import *
 
-def load_row(var):
-    row_number = np.arrange(1, var.shape[0] + 1, dtype=np.int32)
-    result = np.column_stack((row_number, ))
 GNB = GaussianNB()
 # train Gaussian NB Model for dataset 1
 GNB.fit(feature_1, target_1)

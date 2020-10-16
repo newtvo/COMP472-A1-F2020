@@ -1,4 +1,4 @@
-from sklearn.metrics import classification_report, confusion_matrix, precision_score, recall_score, f1_score, accuracy_score
+from sklearn.metrics import confusion_matrix, precision_score, recall_score, f1_score, accuracy_score
 
 
 def output_file(target_val, predicted_target_val, labels, file_name):
@@ -50,5 +50,3 @@ def output_file(target_val, predicted_target_val, labels, file_name):
 
     # close output file
     output.close()
-
-

@@ -1,17 +1,15 @@
-import numpy as np
-import sklearn
-from sklearn.naive_bayes import GaussianNB
+from sklearn.tree import  DecisionTreeClassifier
 from sklearn.metrics import confusion_matrix, classification_report
 
 from Dataset.dataset import *
 from Output.output import *
 
-GNB = GaussianNB()
+DT = DecisionTreeClassifier(criterion='entropy')
 # train Gaussian NB Model for dataset 1
-GNB.fit(feature_1, target_1)
+DT.fit(feature_1, target_1)
 
 # # apply VALIDATION SET to test first
-validation_predict_1 = GNB.predict(validation_feature_1)
+validation_predict_1 = DT.predict(validation_feature_1)
 
 # confusion matrix
 val_confusion_matrix_1 = confusion_matrix(validation_target_1, validation_predict_1)
@@ -22,7 +20,7 @@ print(val_confusion_matrix_1)
 print(val_report_1)
 
 # apply for TEST SET (test_with_labels)
-test_predict_1 = GNB.predict(test_feature_lb_1)
+test_predict_1 = DT.predict(test_feature_lb_1).astype(int)
 
 test_confusion_matrix_1 = confusion_matrix(test_target_lb_1, test_predict_1)
 test_report_1 = classification_report(test_target_lb_1, test_predict_1, target_names=label_1)
@@ -30,15 +28,15 @@ test_report_1 = classification_report(test_target_lb_1, test_predict_1, target_n
 print(test_confusion_matrix_1)
 print(test_report_1)
 
-output_file(test_target_lb_1, test_predict_1, label_1, 'GNB-DS1')
+output_file(test_target_lb_1, test_predict_1, label_1, 'Base-DT-DS1')
 
 ###################################################################################################
 
 # train Gaussian NB Model for dataset 1
-GNB.fit(feature_2, target_2)
+DT.fit(feature_2, target_2)
 
 # # apply VALIDATION SET to test first
-validation_predict_2 = GNB.predict(validation_feature_2)
+validation_predict_2 = DT.predict(validation_feature_2)
 
 # confusion matrix
 val_confusion_matrix_2 = confusion_matrix(validation_target_2, validation_predict_2)
@@ -49,7 +47,7 @@ print(val_confusion_matrix_2)
 print(val_report_2)
 
 # apply for TEST SET (test_with_labels)
-test_predict_2 = GNB.predict(test_feature_lb_2)
+test_predict_2 = DT.predict(test_feature_lb_2).astype(int)
 
 test_confusion_matrix_2 = confusion_matrix(test_target_lb_2, test_predict_2)
 test_report_2 = classification_report(test_target_lb_2, test_predict_2, target_names=label_2)
@@ -57,9 +55,5 @@ test_report_2 = classification_report(test_target_lb_2, test_predict_2, target_n
 print(test_confusion_matrix_2)
 print(test_report_2)
 
-# write test results to output GNB-DS2.csv
-output_file(test_target_lb_2, test_predict_2, label_2, 'GNB-DS2')
-
-
-
-
+# write test results to output DT-DS2.csv
+output_file(test_target_lb_2, test_predict_2, label_2, 'Base-DT-DS2')

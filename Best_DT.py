@@ -24,11 +24,11 @@ best_param = grid_search.best_params_
 print(best_param)
 
 # Using the best parameter for the model
-Best_DT = DecisionTreeClassifier(criterion='entropy',
-                    max_depth=6,
-                    min_samples_split=2,
-                    min_impurity_decrease=0.1,
-                    class_weight=None)
+Best_DT = DecisionTreeClassifier(criterion=best_param['criterion'],
+                    max_depth=best_param['max_depth'],
+                    min_samples_split=best_param['min_samples_split'],
+                    min_impurity_decrease=best_param['min_impurity_decrease'],
+                    class_weight=best_param['class_weight'])
 
 Best_DT_1 = Best_DT.fit(feature_1, target_1)
 

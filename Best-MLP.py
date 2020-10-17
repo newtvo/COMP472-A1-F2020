@@ -3,7 +3,6 @@ from sklearn.neural_network import MLPClassifier
 import warnings
 from sklearn.exceptions import ConvergenceWarning
 warnings.filterwarnings("ignore","", ConvergenceWarning)
-
 from sklearn.metrics import confusion_matrix, classification_report
 
 
@@ -13,18 +12,23 @@ from Output.output import *
 # Creating lists of parameter for Decision Tree Classifier
 Best_MLP = MLPClassifier(max_iter=100)
 
-param_grid = [{'activation': ['identity', 'relu','tanh','logistic'], 'hidden_layer_sizes':[(150,100), (50,50)], 'solver':['adam', 'sgd']}]
+param_grid = {
+    'activation': ['identity', 'relu','tanh','logistic'],
+    'hidden_layer_sizes':[(150,100), (50,50), (10,10,10), (20,30)],
+    'solver':['adam', 'sgd']
+}
 
 # finding the best hyperparameter using gridsearchCV
+# n_jobs=-1 means that the computation will be dispatched on all the CPUs of the computer.
 grid_search = GridSearchCV(Best_MLP, param_grid, n_jobs=-1, cv=2)
 grid_search.fit(feature_1, target_1)
 best_param = grid_search.best_params_
 print(best_param)
 
 # Using the best parameter for the model
-Best_MLP = MLPClassifier(activation='tanh',
-                    hidden_layer_sizes=(150, 100),
-                    solver='adam')
+Best_MLP = MLPClassifier(activation=best_param['activation'],
+                    hidden_layer_sizes=best_param['hidden_layer_sizes'],
+                    solver=best_param['solver'])
 
 Best_MLP = Best_MLP.fit(feature_1, target_1)
 

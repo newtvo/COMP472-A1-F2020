@@ -1,5 +1,7 @@
 from sklearn.linear_model import Perceptron
-from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix, classification_report
+import warnings
+warnings.filterwarnings('ignore')  # "error", "ignore", "always", "default", "module" or "once"
 
 from Dataset.dataset import *
 from Output.output import *

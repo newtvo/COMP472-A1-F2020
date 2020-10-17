@@ -12,10 +12,10 @@ data_label_2 = np.loadtxt('./Dataset/Dataset2/info_2.csv', skiprows=1, usecols=1
 
 # In a given dataset, function is being called to calculate the number of occurrences of a class
 #  data_index: index array which represents the indexes of the dataset's class
-#  fileName: name of the csv file
-def dist_calculation(data_index, fileName, nb_pixels=32**2):
+#  file_name: name of the csv file
+def dist_calculation(data_index, file_name, nb_pixels=32**2):
     distribution = np.zeros(data_index.shape[0], dtype=np.int32)
-    data_class = np.loadtxt(fileName, usecols=nb_pixels, delimiter=',', dtype=np.int32)
+    data_class = np.loadtxt(file_name, usecols=nb_pixels, delimiter=',', dtype=np.int32)
     for i in data_class:
         distribution[i] += 1
     return distribution

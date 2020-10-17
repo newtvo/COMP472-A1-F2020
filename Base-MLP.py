@@ -6,7 +6,9 @@ warnings.filterwarnings('ignore')  # "error", "ignore", "always", "default", "mo
 from Dataset.dataset import *
 from Output.output import *
 
-base_mlp = MLPClassifier(activation='logistic', solver='sgd')
+# 1 hidden layer of100 neurons, sigmoid/logistic
+# as activation function, stochastic gradient descent
+base_mlp = MLPClassifier(activation='logistic', solver='sgd', hidden_layer_sizes=(100))
 # train Gaussian NB Model for dataset 1
 base_mlp.fit(feature_1, target_1)
 
